@@ -1,14 +1,18 @@
 package com.example.andrearodriguez.androidchat.login;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.example.andrearodriguez.androidchat.R;
+import com.example.andrearodriguez.androidchat.contactslist.ContactListActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +30,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     Button btnSignInUp;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
+    @BindView(R.id.layoutMainContainer)
+    RelativeLayout Container;
 
     private LogingPresenter logingPresenter;
 
@@ -99,21 +105,31 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void navigationToMainScreen() {
+        startActivity (new Intent(this, ContactListActivity.class));
 
     }
 
     @Override
     public void loginError(String error) {
+        txtPassword.setText("");
+        String msgError = String.format(getString(R.string.loging_error_messagge_signin, error));
+
+        txtPassword.setError(msgError);
 
     }
 
     @Override
     public void newUserSuccess() {
+        Snackbar.make(Container , getString(R.string.loging_notice_signin),Snackbar.LENGTH_SHORT).show();
 
     }
 
     @Override
-    public void newUserErro(String error) {
+    public void newUserError(String error) {
+        txtPassword.setText("");
+        String msgError = String.format(getString(R.string.loging_error_messagge_signup, error));
+
+        txtPassword.setError(msgError);
 
     }
     private void setInputs (boolean enabled){
