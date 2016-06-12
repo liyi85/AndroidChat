@@ -9,6 +9,7 @@ public class GreenRobotEventBus implements EvenBus {
 
 
     EventBus eventBus;
+
     private static class SingletonHolder{
         private static final GreenRobotEventBus INSTANCE = new GreenRobotEventBus();
     }
@@ -18,8 +19,10 @@ public class GreenRobotEventBus implements EvenBus {
     }
 
     public GreenRobotEventBus(){
+
         this.eventBus = EventBus.getDefault();
     }
+
 
     @Override
     public void register(Object subscriber) {
