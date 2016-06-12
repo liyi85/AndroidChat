@@ -5,11 +5,12 @@ package com.example.andrearodriguez.androidchat.login;
  */
 public class LoginPresenterImplementation implements LogingPresenter{
 
-    LoginView loginView;
-    LoginInteractor loginInteractor;
+    private LoginView loginView;
+    private LoginInteractor loginInteractor;
 
     public LoginPresenterImplementation(LoginView loginView) {
         this.loginView = loginView;
+        this.loginInteractor =new LoginInteractorImpl();
     }
 
     @Override
