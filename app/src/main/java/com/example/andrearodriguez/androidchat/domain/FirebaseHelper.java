@@ -1,5 +1,6 @@
 package com.example.andrearodriguez.androidchat.domain;
 
+import com.example.andrearodriguez.androidchat.entities.User;
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -91,7 +92,8 @@ public class FirebaseHelper {
     }
 
     public void signOff(){
-        notifyContactsOfConnectionChange(false, true);
+
+        notifyContactsOfConnectionChange(User.OFFLINE, true);
 
     }
 
