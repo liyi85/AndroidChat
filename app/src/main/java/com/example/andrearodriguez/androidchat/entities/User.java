@@ -10,7 +10,7 @@ public class User {
     boolean online;
     Map<String, Boolean> contacts;
     public final static boolean ONLINE = true;
-    public final static boolean OFFLINE = true;
+    public final static boolean OFFLINE = false;
 
     public User() {
 

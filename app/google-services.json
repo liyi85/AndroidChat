@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "376457073548",
+    "firebase_url": "https://androidchatapp-6cb8c.firebaseio.com",
+    "project_id": "androidchatapp-6cb8c",
+    "storage_bucket": "androidchatapp-6cb8c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376457073548:android:6393b655aa6619ef",
+        "android_client_info": {
+          "package_name": "com.example.andrearodriguez.androidchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "376457073548-skcoe6kjm0eg41g46h833hgonpoub2d8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWzbcPLtZZKVVuVr7vTRYBgQJ1t2JWiVc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,6 +11,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.util.Map;
+
 /**
  * Created by andrearodriguez on 6/11/16.
  */
@@ -29,8 +31,22 @@ public class LoginRepositoryImpl implements LoginRepository {
 
 
     @Override
-    public void signUp(String email, String password) {
-        postEvent(LoginEvent.onSignUpSuccess);
+    public void signUp(final String email, final String password) {
+        dataReference.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
+            @Override
+            public void onSuccess(Map<String, Object> stringObjectMap) {
+                postEvent(LoginEvent.onSignUpSuccess);
+                SignIn(email, password);
+
+            }
+
+            @Override
+            public void onError(FirebaseError firebaseError) {
+                postEvent(LoginEvent.onSignUpError, firebaseError.getMessage());
+
+            }
+        });
+
 
     }
 
@@ -68,7 +84,7 @@ public class LoginRepositoryImpl implements LoginRepository {
 
             @Override
             public void onAuthenticationError(FirebaseError firebaseError) {
-                postEvent(LoginEvent.onSignInError);
+                postEvent(LoginEvent.onSignInError, firebaseError.getMessage());
 
             }
         });
