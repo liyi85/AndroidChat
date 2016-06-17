@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.andrearodriguez.androidchat.lib.EvenBus;
 import com.example.andrearodriguez.androidchat.lib.GreenRobotEventBus;
 import com.example.andrearodriguez.androidchat.login.events.LoginEvent;
+import com.example.andrearodriguez.androidchat.login.ui.LoginView;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -34,7 +35,6 @@ public class LoginPresenterImpl implements LogingPresenter{
     public void onDestroy() {
         loginView = null;
         eventBus.unregister(this);
-
     }
 
     @Override
@@ -44,7 +44,6 @@ public class LoginPresenterImpl implements LogingPresenter{
             loginView.showProgress();
         }
         loginInteractor.checkSession();
-
     }
 
     @Override
@@ -54,7 +53,6 @@ public class LoginPresenterImpl implements LogingPresenter{
             loginView.showProgress();
         }
         loginInteractor.doSignIn(email, password);
-
     }
 
     @Override
@@ -94,9 +92,7 @@ public class LoginPresenterImpl implements LogingPresenter{
         if(loginView != null){
             loginView.hideProgress();
             loginView.enableInputs();
-
         }
-        Log.e("LoginPresenterImpl","onFailedRecoverSession");
     }
 
     private void onSignInSucces(){
@@ -118,7 +114,6 @@ public class LoginPresenterImpl implements LogingPresenter{
             loginView.hideProgress();
             loginView.enableInputs();
             loginView.loginError(error);
-
         }
 
     }

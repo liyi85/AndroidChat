@@ -1,4 +1,4 @@
-package com.example.andrearodriguez.androidchat.login;
+package com.example.andrearodriguez.androidchat.login.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.example.andrearodriguez.androidchat.R;
-import com.example.andrearodriguez.androidchat.contactslist.ContactListActivity;
+import com.example.andrearodriguez.androidchat.contactslist.ui.ContactListActivity;
+import com.example.andrearodriguez.androidchat.login.LoginPresenterImpl;
+import com.example.andrearodriguez.androidchat.login.LogingPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
