@@ -40,6 +40,7 @@ dependencies {
     compile "com.android.support:multidex:$rootProject.ext.multidexVersion"
     compile "de.hdodenhof:circleimageview:$rootProject.ext.circleimageview"
     compile "org.greenrobot:eventbus:$rootProject.ext.eventbusVersion"
+    compile "com.github.bumptech.glide:glide:$rootProject.ext.GlideVersion"
 
 }
 apply plugin: 'com.google.gms.google-services'

@@ -40,5 +40,6 @@ ext {
     multidexVersion = '1.0.0'
     circleimageview = '2.0.0'
     eventbusVersion = '3.0.0'
+    GlideVersion = '3.7.0'
 
 }

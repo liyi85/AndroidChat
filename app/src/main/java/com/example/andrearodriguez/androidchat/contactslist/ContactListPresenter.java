@@ -8,7 +8,7 @@ import com.example.andrearodriguez.androidchat.contactslist.events.ContactListEv
 public interface ContactListPresenter {
     void onPause();
     void onResume();
-    void onCreated();
+    void onCreate();
     void onDestroy();
 
     void signOff();

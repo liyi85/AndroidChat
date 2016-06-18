@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.andrearodriguez.androidchat.R;
+import com.example.andrearodriguez.androidchat.domain.AvatarDomindHelper;
 import com.example.andrearodriguez.androidchat.entities.User;
+import com.example.andrearodriguez.androidchat.lib.ImageLoader;
 
 import java.util.List;
 
@@ -22,12 +24,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.ViewHolder> {
 
     private List<User> contactList;
-    private ImageLoading imageLoader;
+    private ImageLoader imageLoader;
     private OnItemClickListener onItemClickListener;
 
-    public ContactListAdapter(List<User> contactList, ImageLoading imageLoading, OnItemClickListener onItemClickListener) {
+    public ContactListAdapter(List<User> contactList, ImageLoader imageLoader, OnItemClickListener onItemClickListener) {
         this.contactList = contactList;
-        this.imageLoader = imageLoading;
+        this.imageLoader = imageLoader;
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -45,12 +47,16 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
         boolean online = user.isOnline();
         String status = online ? "online" : "offline";
-        int color = online ? Color.GREEN : Color.RED;
+        int color = online ? Color.rgb(96, 169, 23) : Color.RED;
 
-        holder.txtUser.setText(user.getEmail());
-        holder.txtStatus.setText(user.getEmail());
+
+        String email = user.getEmail();
+        holder.txtUser.setText(email);
+
+        holder.txtStatus.setText(status);
         holder.txtStatus.setTextColor(color);
-        imageLoader.load(holder.imgAvatar, "");
+
+        imageLoader.load(holder.imgAvatar, AvatarDomindHelper.getAvatarUrl(email));
     }
 
     @Override
@@ -70,7 +76,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            this.view = view;
+            this.view = itemView;
         }
 
         private void setClickListener(final User user, final OnItemClickListener listener){
