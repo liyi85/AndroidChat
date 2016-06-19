@@ -8,13 +8,14 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.andrearodriguez.androidchat.R;
 import com.example.andrearodriguez.androidchat.contactslist.ContactListPresenter;
+import com.example.andrearodriguez.androidchat.contactslist.ContactListPresenterImp;
 import com.example.andrearodriguez.androidchat.contactslist.ui.adapters.ContactListAdapter;
 import com.example.andrearodriguez.androidchat.contactslist.ui.adapters.OnItemClickListener;
 import com.example.andrearodriguez.androidchat.entities.User;
 import com.example.andrearodriguez.androidchat.lib.GladeImageLoader;
 import com.example.andrearodriguez.androidchat.lib.ImageLoader;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,8 +39,9 @@ public class ContactListActivity extends AppCompatActivity implements ContactLis
         setupAdapter();
         setupRecyclerView();
 
-        //presenter.onCreate();
-        //setupToolbar();
+        presenter = new ContactListPresenterImp(this);
+        presenter.onCreate();
+        setupToolbar();
 
     }
 
@@ -50,11 +52,7 @@ public class ContactListActivity extends AppCompatActivity implements ContactLis
 
     private void setupAdapter() {
         ImageLoader loader = new GladeImageLoader(this.getApplicationContext());
-        User user = new User();
-        user.setOnline(true);
-        user.setEmail("liyi85@gmail.com");
-
-        adapter = new ContactListAdapter(Arrays.asList(new User[]{user}), loader, this);
+        adapter = new ContactListAdapter(new ArrayList<User>(), loader, this);
     }
 
     private void setupToolbar() {
@@ -67,37 +65,37 @@ public class ContactListActivity extends AppCompatActivity implements ContactLis
 
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        presenter.onResume();
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        presenter.onPause();
-//        super.onPause();
-//    }
-//
-//    @Override
-//    protected void onDestroy() {
-//        presenter.onDestroy();
-//        super.onDestroy();
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        presenter.onPause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        presenter.onDestroy();
+        super.onDestroy();
+    }
 
     @Override
     public void onContactAdd(User user) {
-
+        adapter.add(user);
     }
 
     @Override
     public void onContactChange(User user) {
-
+        adapter.change(user);
     }
 
     @Override
     public void onContactRemoved(User user) {
-
+        adapter.remove(user);
     }
 
     @Override

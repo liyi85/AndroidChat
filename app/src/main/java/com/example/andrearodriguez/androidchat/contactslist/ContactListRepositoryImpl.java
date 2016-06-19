@@ -35,11 +35,6 @@ public class ContactListRepositoryImpl implements ContactListRepository {
     }
 
     @Override
-    public void changeConectionStatus(boolean online) {
-
-    }
-
-    @Override
     public void removeContact(String email) {
         String currenUserEmail = helper.getAuthUserEmail();
         helper.getOneContactReference(currenUserEmail, email).removeValue();
@@ -72,14 +67,10 @@ public class ContactListRepositoryImpl implements ContactListRepository {
                 }
 
                 @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                }
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
 
                 @Override
-                public void onCancelled(FirebaseError firebaseError) {
-
-                }
+                public void onCancelled(FirebaseError firebaseError) {}
             };
 
         }
@@ -108,6 +99,10 @@ public class ContactListRepositoryImpl implements ContactListRepository {
         if(contactEventListener!=null){
             helper.getMyContactsReference().removeEventListener(contactEventListener);
         }
+    }
+
+    @Override
+    public void changeConectionStatus(boolean online) {
 
     }
 }
