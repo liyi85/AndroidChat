@@ -1,0 +1,29 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".addcontact.ui.AddContactBlankFragment">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/emailNewUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/loging.message.email"
+            android:inputType="textEmailAddress"
+            android:id="@+id/editTctEmail"/>
+    </android.support.design.widget.TextInputLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleLarge"
+            android:id="@+id/progressBarAddContact"
+            android:layout_centerHorizontal = "true"
+            android:visibility="gone"/>
+
+</FrameLayout>

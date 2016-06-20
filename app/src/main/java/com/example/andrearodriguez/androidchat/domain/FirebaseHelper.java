@@ -46,7 +46,7 @@ public class FirebaseHelper {
         }
         return email;
     }
-    private Firebase getUserReference(String email){
+    public Firebase getUserReference(String email){
         Firebase userReference = null;
         if (email != null){
             String emailKey = email.replace(".","_");
@@ -61,6 +61,7 @@ public class FirebaseHelper {
         return getUserReference(email).child(CONTACTS_PATH);
     }
     public Firebase getMyContactsReference(){
+
         return getContactsReference(getAuthUserEmail());
     }
     public Firebase getOneContactReference(String mainEmail, String childEmail){

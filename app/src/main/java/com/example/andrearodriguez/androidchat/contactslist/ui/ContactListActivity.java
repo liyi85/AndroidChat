@@ -1,12 +1,18 @@
 package com.example.andrearodriguez.androidchat.contactslist.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.andrearodriguez.androidchat.R;
+import com.example.andrearodriguez.androidchat.addcontact.ui.AddContactBlankFragment;
 import com.example.andrearodriguez.androidchat.contactslist.ContactListPresenter;
 import com.example.andrearodriguez.androidchat.contactslist.ContactListPresenterImp;
 import com.example.andrearodriguez.androidchat.contactslist.ui.adapters.ContactListAdapter;
@@ -14,6 +20,7 @@ import com.example.andrearodriguez.androidchat.contactslist.ui.adapters.OnItemCl
 import com.example.andrearodriguez.androidchat.entities.User;
 import com.example.andrearodriguez.androidchat.lib.GladeImageLoader;
 import com.example.andrearodriguez.androidchat.lib.ImageLoader;
+import com.example.andrearodriguez.androidchat.login.ui.LoginActivity;
 
 import java.util.ArrayList;
 
@@ -45,6 +52,25 @@ public class ContactListActivity extends AppCompatActivity implements ContactLis
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_logut){
+            presenter.signOff();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    |intent.FLAG_ACTIVITY_NEW_TASK
+                    |intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_contactlist, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     private void setupRecyclerView() {
         recyclerViewContacts.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewContacts.setAdapter(adapter);
@@ -62,7 +88,7 @@ public class ContactListActivity extends AppCompatActivity implements ContactLis
 
     @OnClick(R.id.fab)
     public void addContact(){
-
+        new AddContactBlankFragment().show(getSupportFragmentManager(), getString(R.string.addcontact_messagge_title));
     }
 
     @Override
@@ -100,11 +126,13 @@ public class ContactListActivity extends AppCompatActivity implements ContactLis
 
     @Override
     public void onItemClick(User user) {
+        Log.e("click", "simple");
+        Toast.makeText(this, user.getEmail(), Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void onItemLongClick(User user) {
-
+      presenter.removeContact(user.getEmail());
     }
 }
