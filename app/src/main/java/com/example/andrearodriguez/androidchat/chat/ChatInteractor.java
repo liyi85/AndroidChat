@@ -9,5 +9,5 @@ public interface ChatInteractor {
 
     void suscribe();
     void unsuscribe();
-    void DestroyListener();
+    void destroyListener();
 }

@@ -9,7 +9,7 @@ public interface ChatRepository {
 
     void suscribe();
     void unsuscribe();
-    void DestroyListener();
+    void destroyListener();
     void changeConetionstatus(boolean online);
 
 }
