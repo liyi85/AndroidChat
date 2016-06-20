@@ -49,15 +49,23 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         int color = fetchColor(R.attr.colorPrimary);
         int gravity = Gravity.LEFT;
 
-        if(!chatMessagge.isSentByMe()){
+        if (!chatMessagge.isSentByMe()) {
             color = fetchColor(R.attr.colorAccent);
             gravity = Gravity.RIGHT;
         }
         holder.txtMessagge.setBackgroundColor(color);
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)holder.txtMessagge.getLayoutParams();
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.txtMessagge.getLayoutParams();
         params.gravity = gravity;
         holder.txtMessagge.setLayoutParams(params);
     }
+    private int fetchColor(int color) {
+        TypedValue typedValue = new TypedValue();
+        TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[]{color});
+        int returnColor = a.getColor(0, 0);
+        a.recycle();
+        return returnColor;
+    }
+
 
     @Override
     public int getItemCount() {
@@ -70,14 +78,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             chatMessagges.add(msg);
             notifyDataSetChanged();
         }
-    }
-
-    private int fetchColor(int color){
-        TypedValue typedValue = new TypedValue();
-        TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[] {color});
-        int returnColor = a.getColor(0,0);
-        a.recycle();
-        return returnColor;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -61,8 +61,19 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
     }
 
     private void setupAdapter() {
-        adapter = new ChatAdapter(getApplicationContext(), new ArrayList<ChatMessagge>());
+        //        ChatMessagge msg1 = new ChatMessagge();
+//        ChatMessagge msg2 = new ChatMessagge();
+//
+//        msg2.setMsg("hola");
+//        msg1.setMsg("tonces?");
+//
+//        msg1.setSentByMe(false);
+//        msg2.setSentByMe(true);
+//
+//        adapter = new ChatAdapter(this, Arrays.asList(new ChatMessagge[]{msg1,msg2}));
+        adapter = new ChatAdapter(this, new ArrayList<ChatMessagge>());
     }
+        //adapter = new ChatAdapter(getApplicationContext(), new ArrayList<ChatMessagge>()); error
 
     private void setupRecyclerView() {
         messaageRecycleView.setLayoutManager(new LinearLayoutManager(this));
