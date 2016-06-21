@@ -2,7 +2,7 @@
     <string name="app_name">AndroidChat</string>
     <string name="loging.message.email">Correo electronico</string>
     <string name="loging.message.password">Password</string>
-    <string name="loging.button.signup">crear cuenta</string>
+    <string name="loging.button.gotosignup">Ir a crear cuenta</string>
     <string name="loging.button.singin">iniciar sesion</string>
     <string name="loging.error.messagge.signin">Imposible iniciar sesion %s</string>
     <string name="loging.error.messagge.signup">Imposible crear nuevo usuario %s</string>
@@ -16,5 +16,8 @@
     <string name="addcontact.messagge.cancel">Cancel</string>
     <string name="addcontact.messagge.contactadded">Contacto agregado exitosamente</string>
     <string name="addcontact.erro.messagge">Imposible agregar usuario no existente</string>
+
+    <string name="signup.button.signup">crear cuenta</string>
+    <string name="signup.title">Screan crear cuenta</string>
 
 </resources>

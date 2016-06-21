@@ -2,7 +2,6 @@ package com.example.andrearodriguez.androidchat.login.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +14,7 @@ import com.example.andrearodriguez.androidchat.R;
 import com.example.andrearodriguez.androidchat.contactslist.ui.ContactListActivity;
 import com.example.andrearodriguez.androidchat.login.LoginPresenterImpl;
 import com.example.andrearodriguez.androidchat.login.LogingPresenter;
+import com.example.andrearodriguez.androidchat.signup.ui.ActivitySignUp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,8 +45,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         ButterKnife.bind(this);
 
         logingPresenter = new LoginPresenterImpl(this);
-        logingPresenter.onCreate();
-        logingPresenter.checkForAuthenticationUser();
+
+
+
     }
 
     @Override
@@ -77,6 +78,19 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
+    protected void onPause() {
+        logingPresenter.onPause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        logingPresenter.onResumen();
+        logingPresenter.checkForAuthenticationUser();
+    }
+
+    @Override
     public void enableInputs() {
         setInputs(true);
 
@@ -103,9 +117,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @OnClick(R.id.btnSignInUp)
     @Override
     public void handleSignUp() {
-        logingPresenter.registerNewUser(txtEmail.getText().toString(),
-                            txtPassword.getText().toString());
+//        logingPresenter.registerNewUser(txtEmail.getText().toString(),
+//                            txtPassword.getText().toString());
 
+        startActivity(new Intent(this, ActivitySignUp.class));
     }
 
     @OnClick(R.id.btnSignin)
@@ -118,7 +133,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void navigationToMainScreen() {
-        startActivity (new Intent(this, ContactListActivity.class));
+        Intent intent = new Intent(this, ContactListActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity (intent);
 
     }
 
@@ -133,17 +150,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void newUserSuccess() {
-        Snackbar.make(Container , getString(R.string.loging_notice_signin),Snackbar.LENGTH_SHORT).show();
+        throw  new UnsupportedOperationException("Operacion no es valida desde la Actividad Login");
 
     }
 
     @Override
     public void newUserError(String error) {
-        txtPassword.setText("");
-        String msgError = String.format(getString(R.string.loging_error_messagge_signup, error));
-
-        txtPassword.setError(msgError);
-
+        throw  new UnsupportedOperationException("Operacion no es valida desde la Actividad SignUp");
     }
     private void setInputs (boolean enabled){
         txtEmail.setEnabled(enabled);
